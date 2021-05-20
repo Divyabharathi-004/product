@@ -1,0 +1,6 @@
+db:
+  host: "bvsiip7h3u4euebh6bzd-mysql.services.clever-cloud.com"
+  port: "3306"
+  user: "uygak2iwmaqo55zv"
+  password: "omypTdHupNhBSQkmOjUz"
+  database: "bvsiip7h3u4euebh6bzd"
