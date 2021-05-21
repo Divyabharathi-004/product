@@ -23,6 +23,27 @@
 	<build>
 		<plugins>
 			<plugin>
+            <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.6</version>
+                 <extensions>true</extensions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>http://localhost:8091/nexus/</nexusUrl>
+                    <skipStaging>true</skipStaging>
+                </configuration>
+                <executions>
+                       <execution>
+                         <id>default-deploy</id>
+                         <phase>deploy</phase>
+                         <goals>
+                           <goal>deploy</goal>
+                         </goals>
+                       </execution>
+                </executions>   
+            </plugin>
+			
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.0.0</version>
@@ -39,6 +60,20 @@
 							<artifactId>mysql-connector-java</artifactId>
 						</sharedLibrary>
 					</sharedLibraries>
+					<cloudHubDeployment>
+                        <uri>https://anypoint.mulesoft.com</uri>
+                        <username>akhil_d</username>
+                        <password>Akhil@1999</password>
+                        <environment>Sandbox</environment>
+                        <muleVersion>4.3.0</muleVersion>
+                        <workers>1</workers>
+                        <workerType>Micro</workerType>
+                        <applicationName>proj-product-system-api</applicationName>
+                        <objectStoreV2>true</objectStoreV2>
+						<properties>
+        					<env>PROD</env>
+      					</properties>
+					</cloudHubDeployment>
 					<classifier>mule-application</classifier>
 				</configuration>
 			</plugin>
@@ -68,6 +103,14 @@
             </plugin>
         </plugins>
 	</build>
+	<distributionManagement>
+        <snapshotRepository>
+          <id>product-api</id>
+          <name>product-api</name>
+          <url>http://localhost:8091/repository/product-api/</url>
+        </snapshotRepository>
+     </distributionManagement>
+	
 
 	<dependencies>
 		<dependency>
